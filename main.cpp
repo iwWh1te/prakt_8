@@ -4,10 +4,12 @@ class MainWindow : public QMainWindow{
 		MainWindow();
 		void startButtonClick();
 		void stopButtonClick();
+		void pauseButtonClick();
 	private:
 	QLabel *textLabel;
 	QPushButton *startButton;
 	QPushButton *stopButton;
+	QPushButton *pauseButton;
 	};		
 MainWindow::MainWindow(){
 	resize(900,500);
@@ -23,13 +25,21 @@ MainWindow::MainWindow(){
 	stopButton = new QPushButton("Stop",this);
 	stopButton->setGeometry(150,220,70,30);
 	stopButton->setFont(buttonFont);
+	pauseButton = new QPushButton("Pause",this);
+	pauseButton->setGeometry(200,220,70,30);
+	pauseButton->setFont(buttonFont);
 	connect (startButton, &QPushButton::clicked,this, &MainWindow::startButtonClick);
-	connect (stopButton, &QPushButton::clicked,this, &MainWindow::stopButtonClick);}	
+	connect (stopButton, &QPushButton::clicked,this, &MainWindow::stopButtonClick);
+	connect (pauseButton, &QPushButton::clicked,this, &MainWindow::pauseButtonClick);
+	}	
 void MainWindow::startButtonClick(){
 	textLabel->setText("Start");
 }
 void MainWindow::stopButtonClick(){
 	textLabel->setText("Stop");
+}
+void MainWindow::pauseButtonClick(){
+	textLabel->setText("Pause");
 }
 int main(int argc,char *argv[]){
 	QApplication app(argc,argv);
